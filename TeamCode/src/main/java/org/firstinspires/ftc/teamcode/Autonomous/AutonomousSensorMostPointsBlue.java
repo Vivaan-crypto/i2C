@@ -1,23 +1,25 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
+import android.hardware.Sensor;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import  com.qualcomm.robotcore.hardware.DistanceSensor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-
 //Import color sensor
-@Autonomous(name = "AutonomousSensorMostPointsRed")
-public class AutonomousSensorMostPointsRed extends LinearOpMode {
+
+@Autonomous(name = "AutonomousSensorMostPointsBlue")
+public class AutonomousSensorMostPointsBlue extends LinearOpMode {
     //Color sensor declarement.
     private DistanceSensor DistanceSensor;
-    private DcMotor fl, bl, fr, br; //Br, Bl, and Fr move backwards
-    private Servo Claw;// Left Servo
+    private DcMotor fl, bl, fr, br; //Fr is the wonky one
+    private Servo Claw;
     Gamepad gamePad1;
     @Override
     public void runOpMode(){
@@ -36,8 +38,8 @@ public class AutonomousSensorMostPointsRed extends LinearOpMode {
         bl.setPower(0);
         fr.setPower(0);
         br.setPower(0);
-        double distance = DistanceSensor.getDistance(DistanceUnit.INCH);
         waitForStart();
+        double distance = DistanceSensor.getDistance(DistanceUnit.INCH);
         while(opModeIsActive()){
         /*For the autonomouses when close to the backboard(Auto 1 & 2) code the code to move to position
 then sense the place where the team prop is and the place PURPLE pixel down there
@@ -80,10 +82,10 @@ and then drive to backboard and put yellow pixel over there.  Then for Auto 3 & 
                 //Claw2.setPosition(1);
                 sleep(500);
                 //strafe to the right so in line with truss 1
-                fr.setPower(.5);
-                fl.setPower(.5);
-                br.setPower(.5);
-                bl.setPower(-.5);
+                fr.setPower(-.5);
+                fl.setPower(-.5);
+                br.setPower(-.5);
+                bl.setPower(.5);
                 sleep(300);
                 if(distance <= 100 && distance >= 8) {
                     //Moves to bakcboard
@@ -136,10 +138,10 @@ and then drive to backboard and put yellow pixel over there.  Then for Auto 3 & 
                 bl.setPower(-0.5);
                 sleep(1000);
                 //strafe to the right so in line with truss 1
-                fr.setPower(.5);
-                fl.setPower(.5);
-                br.setPower(.5);
-                bl.setPower(-.5);
+                fr.setPower(-.5);
+                fl.setPower(-.5);
+                br.setPower(-.5);
+                bl.setPower(.5);
                 sleep(300);
                 if(distance <= 100 && distance >= 8) {
                     //Moves to bakcboard
@@ -185,16 +187,16 @@ and then drive to backboard and put yellow pixel over there.  Then for Auto 3 & 
                 //   Claw2.setPosition(1);
                 sleep(500);
                 //Turns 90 degrees to face truss 2
-                fl.setPower(0.5);
-                fr.setPower(0.5);
+                fr.setPower(-0.5);
+                fl.setPower(-0.5);
                 br.setPower(0.5);
                 bl.setPower(-0.5);
                 sleep(500);
-                //strafes to the right so in line with truss 1
-                fr.setPower(.5);
-                fl.setPower(.5);
-                br.setPower(.5);
-                bl.setPower(-.5);
+                //strafes to the left so in line with truss 1
+                fr.setPower(-.5);
+                fl.setPower(-.5);
+                br.setPower(-.5);
+                bl.setPower(.5);
                 sleep(500);
                 if(distance <= 100 && distance >= 8) {
                     //Moves to bakcboard
@@ -212,7 +214,7 @@ and then drive to backboard and put yellow pixel over there.  Then for Auto 3 & 
                     br.setPower(0);
                     sleep(30000);
                 }
-        }
+            }
             else{
                 fl.setPower(0);
                 fr.setPower(0);
@@ -220,6 +222,6 @@ and then drive to backboard and put yellow pixel over there.  Then for Auto 3 & 
                 br.setPower(0);
                 Claw.setPosition(0);
             }
+        }
     }
- }
 }
