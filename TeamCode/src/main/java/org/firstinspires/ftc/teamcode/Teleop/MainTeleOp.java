@@ -12,25 +12,33 @@ public class MainTeleOp extends LinearOpMode {
 /*Use the code for the Gates if team has time and decides to build the Gates to store pixels
  if not then comment out the code, DON'T DELETE! and set the drone launch to X and Y,
   Y = recoils rubber band & X = Shoot Drone!*/
+/*Use the codes for Hanging if team has time and is able to build the mechanism. Mechanism: Put a viper
+kit behind the elbow on the side which doesn't have the expansion hub, or if possible then on the
+center-plate which is in front of the control hub, attach claw to viper with inside facing downward*/
+//Claw for hanging will basically a cylinder cut in half and inside hollow, and then place it latterally on viper kit
 
+
+  private Servo HangingClaw;
+  private DcMotorEx HangingMechanismMotor;
+  private Servo DroneLaunchServo;
   private Servo Gate1;
-
   private Servo Gate2;
-    private Servo DroneLaunchServo;
-    private Servo Claw;
-    private DcMotorEx LinearClaw;
-
-// private
-    private Forward drive;
+  private Servo Claw;
+  private DcMotorEx LinearClaw;
+  private Forward drive;
 
     @Override
     public void runOpMode() {
         drive = new Forward(hardwareMap, gamepad1, telemetry);
+        HangingClaw = hardwareMap.get(Servo.class, "HangingClaw");
+        HangingMechanismMotor = hardwareMap.get(DcMotorEx.class, "HangingMechanismMotor");
+        DroneLaunchServo = hardwareMap.get(Servo.class, "DroneLaunchServo");
         Gate1 = hardwareMap.get(Servo.class, "Gate1");
         Gate2 = hardwareMap.get(Servo.class, "Gate2");
-        DroneLaunchServo = hardwareMap.get(Servo.class, "DroneLaunchServo");
         Claw = hardwareMap.get(Servo.class, "Claw");
         LinearClaw = hardwareMap.get(DcMotorEx.class, "LinearClaw"); //Configure in Expansion Hub
+        double ClawPosition1 = gamepad1.right_trigger;
+        double ClawPosition2 = gamepad1.left_trigger;
         waitForStart();
         while (opModeIsActive()) {
 
@@ -62,12 +70,24 @@ public class MainTeleOp extends LinearOpMode {
         if(gamepad1.x) {
             Gate1.setPosition(0);
             Gate2.setPosition(1);
-            //Opens Gates-Change the # as needed
+            //Opens Gates-Change the # as needed based upon placement of servo
         }
         if(gamepad1.y) {
             Gate1.setPosition(1);
             Gate2.setPosition(0);
-            //Closes Gates-Change the # as needed
+            //Closes Gates-Change the # as needed based upon placement of servo
+        }
+        ////BREAK//////////////////////////////BREAK//////////////////////////////////////BREAK/////
+            HangingClaw.setPosition(gamepad1.right_trigger);//Claw should become flat, meaning the empty/flat side should be facing up
+          //Change -Gamepad1... as needed based upon placement of servo
+        ////BREAK/////////////////////////////BREAK///////////////////////////////////////BREAK/////
+            HangingClaw.setPosition(gamepad1.left_trigger);//Claw should become flat, but this the empty/flat side should be facing downwards
+            //Change -Gamepad1... as needed based upon placement of servo
+
+        if(gamepad1.right_stick_y > 0.4 || gamepad1.right_stick_y < -0.4 && gamepad1.left_stick_y >  0.4 || gamepad1.left_stick_y < -0.4){
+            HangingMechanismMotor.setPower(gamepad1.left_stick_y);
+            //Moves viper kit for hanging mechanism up and down
+            //Change to -Gamepad1... if needed due to motor placement
         }
     }
 
