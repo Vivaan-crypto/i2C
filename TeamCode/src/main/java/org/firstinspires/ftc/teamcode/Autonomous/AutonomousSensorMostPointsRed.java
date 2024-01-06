@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
+import android.graphics.Color;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -8,26 +10,31 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-
-//Import color sensor
 @Autonomous(name = "AutonomousSensorMostPointsRed")
 public class AutonomousSensorMostPointsRed extends LinearOpMode {
-    //Color sensor declarement.
+    ColorSensor ColorSensor1;
+    ColorSensor ColorSensor2;
+    ColorSensor ColorSensor3;
     private DistanceSensor DistanceSensor;
     private DcMotor fl, bl, fr, br; //Br, Bl, and Fr move backwards
     private Servo Claw;// Left Servo
     Gamepad gamePad1;
     @Override
     public void runOpMode(){
-        //Color sensor configurement to hardware map.
+        ColorSensor1 = hardwareMap.get(ColorSensor.class, "ColorSensor1");
+        ColorSensor2 = hardwareMap.get(ColorSensor.class, "ColorSensor2");
+        ColorSensor3 = hardwareMap.get(ColorSensor.class, "ColorSensor3");
         DistanceSensor = hardwareMap.get(DistanceSensor.class, "DistanceSensor");
         fl = hardwareMap.get(DcMotor.class, "fl");
         bl = hardwareMap.get(DcMotor.class, "bl");
         fr = hardwareMap.get(DcMotor.class, "fr");
         br = hardwareMap.get(DcMotor.class, "br");
         Claw = hardwareMap.get(Servo.class, "Claw");
+        telemetry.addData("Status", "Initialized ");
+        telemetry.update();
         fr.setDirection(DcMotorSimple.Direction.FORWARD);
         fl.setDirection(DcMotorSimple.Direction.FORWARD);
         br.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -52,7 +59,7 @@ and then drive to backboard and put yellow pixel over there.  Then for Auto 3 & 
             sleep(1000);
             /*To make the sensor detect team prop, program it to sense on angles, for example make it first detect at the
              * left 30 degree, the in front 30 degree and then finally detect on the right at a 30 degree scope*/
-            if(gamePad1.a) { /*Change from whatever to the Color sensor Detecting Team Prop on Right */
+            if(ColorSensor1.red() > 100) { /*Change from what it is right now to the Color sensor Detecting Team Prop on Right */
                 //Turn right
                 fl.setPower(0.5);
                 fr.setPower(0.5);
@@ -102,7 +109,7 @@ and then drive to backboard and put yellow pixel over there.  Then for Auto 3 & 
                     sleep(30000);
                 }
             }
-            if(gamePad1.b){ /*Change from whatever to the Color sensor Detecting Team Prop on the Left  */
+            if(ColorSensor2.red() > 100){ /*Change from what it is right now to the Color sensor Detecting Team Prop on the Left  */
                 //Turn Left
                 fl.setPower(-0.5);
                 fr.setPower(-0.5);
@@ -158,7 +165,7 @@ and then drive to backboard and put yellow pixel over there.  Then for Auto 3 & 
                     sleep(30000);
                 }
             }
-            if(gamePad1.y) {/*Change from whatever to the Color sensor Detecting Team Prop in front  */
+            if(ColorSensor3.red() > 100) {/*Change from what it is right now to the Color sensor Detecting Team Prop in front  */
                 fl.setPower(0.5);
                 fr.setPower(-0.5);
                 br.setPower(-0.5);
@@ -197,7 +204,7 @@ and then drive to backboard and put yellow pixel over there.  Then for Auto 3 & 
                 bl.setPower(-.5);
                 sleep(500);
                 if(distance <= 100 && distance >= 8) {
-                    //Moves to bakcboard
+                    //Moves to backboard
                     fr.setPower(-.5);
                     fl.setPower(.5);
                     br.setPower(.5);
@@ -220,6 +227,17 @@ and then drive to backboard and put yellow pixel over there.  Then for Auto 3 & 
                 br.setPower(0);
                 Claw.setPosition(0);
             }
+            telemetry.addData("Red: ",ColorSensor1.red());
+            telemetry.addData("Blue: ",ColorSensor1.blue());
+            telemetry.addData("Green: ",ColorSensor1.green());
+            telemetry.addData("Red: ",ColorSensor2.red());
+            telemetry.addData("Blue: ",ColorSensor2.blue());
+            telemetry.addData("Green: ",ColorSensor2.green());
+            telemetry.addData("Red: ",ColorSensor3.red());
+            telemetry.addData("Blue: ",ColorSensor3.blue());
+            telemetry.addData("Green: ",ColorSensor3.green());
+            telemetry.addData("Statues", "Running");
+            telemetry.update();
     }
  }
 }
