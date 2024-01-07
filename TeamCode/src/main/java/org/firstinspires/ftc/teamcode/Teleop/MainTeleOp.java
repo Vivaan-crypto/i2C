@@ -17,8 +17,6 @@ kit behind the elbow on the side which doesn't have the expansion hub, or if pos
 center-plate which is in front of the control hub, attach claw to viper with inside facing downward*/
 //Claw for hanging will basically a cylinder cut in half and inside hollow, and then place it latterally on viper kit
 
-
-  private Servo HangingClaw;
   private DcMotorEx HangingMechanismMotor;
   private Servo DroneLaunchServo;
   private Servo Gate1;
@@ -30,7 +28,6 @@ center-plate which is in front of the control hub, attach claw to viper with ins
     @Override
     public void runOpMode() {
         drive = new Forward(hardwareMap, gamepad1, telemetry);
-        HangingClaw = hardwareMap.get(Servo.class, "HangingClaw");
         HangingMechanismMotor = hardwareMap.get(DcMotorEx.class, "HangingMechanismMotor");
         DroneLaunchServo = hardwareMap.get(Servo.class, "DroneLaunchServo");
         Gate1 = hardwareMap.get(Servo.class, "Gate1");
@@ -47,7 +44,6 @@ center-plate which is in front of the control hub, attach claw to viper with ins
         }
 
     }
-    // If the if loops start glitchin then change remove the left_trigger and right_trigger if loops, and keep everything else the same. After that for the hanger if loops ONLY put them so that the LEFT trigger and the button/joystick have to be pressed/moved TOGETHER for the hanger if loops to work: For example: if(gameapd1.left_trigger & gamepad1.a) {...}
     public void ControllLoops() {
         if (gamepad1.dpad_down) {
             DroneLaunchServo.setPosition(1); /* Set servo to 180 degrees position, which primes launcher for drone launch. Change the # as needed*/
@@ -56,10 +52,10 @@ center-plate which is in front of the control hub, attach claw to viper with ins
             DroneLaunchServo.setPosition(0);
             // Launches the drone, and sets it to initial position. Change the # as needed
         }
-        if (gamepad1.a) {
+        if (gamepad1.b) {
             Claw.setPosition(1);//Grabs the pixel, change the # as needed-Left
         }
-        if (gamepad1.b) {
+        if (gamepad1.a) {
             Claw.setPosition(0);//Releases the pixel, change the # as needed-Left
         }
         if (gamepad1.right_stick_y > 0.4 || gamepad1.right_stick_y < -0.4) {
@@ -77,19 +73,11 @@ center-plate which is in front of the control hub, attach claw to viper with ins
             Gate2.setPosition(0);
             //Closes Gates-Change the # as needed based upon placement of servo
         }
-        ////BREAK//////////////////////////////BREAK//////////////////////////////////////BREAK/////
-            HangingClaw.setPosition(gamepad1.right_trigger);//Claw should become flat, meaning the empty/flat side should be facing up
-          //Change -Gamepad1... as needed based upon placement of servo
-        ////BREAK/////////////////////////////BREAK///////////////////////////////////////BREAK/////
-            HangingClaw.setPosition(gamepad1.left_trigger);//Claw should become flat, but this the empty/flat side should be facing downwards
-            //Change -Gamepad1... as needed based upon placement of servo
-
-        if(gamepad1.right_stick_y > 0.4 || gamepad1.right_stick_y < -0.4 && gamepad1.left_stick_y >  0.4 || gamepad1.left_stick_y < -0.4){
-            HangingMechanismMotor.setPower(gamepad1.left_stick_y);
-            //Moves viper kit for hanging mechanism up and down
-            //Change to -Gamepad1... if needed due to motor placement
+        if(gamepad1.a){
+            HangingMechanismMotor.setPower(gamepad1.left_trigger);//Shortens Viper slides crunching robot and raising robot of ground
+            //Change -left trigger... as needed based upon placement of motor
+            HangingMechanismMotor.setPower(gamepad1.right_trigger);//Extends Viper slides releasing robot and putting it back down on the ground
+            //Change to -right trigger... if needed due to motor placement
+          }
         }
     }
-
-}
-

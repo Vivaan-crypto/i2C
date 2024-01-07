@@ -10,8 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class RightAuto_DriveToBackBoard extends LinearOpMode
 {
     DcMotor fr, fl, br, bl;
-    private Servo Claw1;
-    //  private Servo Claw2;
+    private Servo Claw;
     @Override
     public void runOpMode()
     {
@@ -24,11 +23,8 @@ public class RightAuto_DriveToBackBoard extends LinearOpMode
         //motor2
         bl = hardwareMap.get(DcMotor.class, "br");
         //motor3
-        Claw1 = hardwareMap.get(Servo.class, "Claw1");
-        //Left Claw
-        //  Claw2 = hardwareMap.get(Servo.class, "Claw2");
-        //Right Claw
-        fr.setDirection(DcMotor.Direction.FORWARD);//Motor with ISSUES!!! Ultu
+        Claw = hardwareMap.get(Servo.class, "Claw");
+        fr.setDirection(DcMotor.Direction.FORWARD);//Motor with ISSUES!!! Backwards
         fl.setDirection(DcMotor.Direction.FORWARD);
         br.setDirection(DcMotor.Direction.FORWARD);
         bl.setDirection(DcMotor.Direction.FORWARD);
@@ -36,7 +32,7 @@ public class RightAuto_DriveToBackBoard extends LinearOpMode
         while(opModeIsActive()) {
             //1000 = 1 sec
             //IF YOU CHANGE SPEED THEN CHANGE TIME OR IT WILL OVER/UNDER TRAVEL
-            //Change when mech team adds 425's(motors)
+            //Change when Mechanical team adds 425's(motors)
             sleep(3000);
             //Moves Forward
             fr.setPower(-0.5);
@@ -56,8 +52,7 @@ public class RightAuto_DriveToBackBoard extends LinearOpMode
             br.setPower(0.5);
             bl.setPower(0.5);
             sleep (800);
-            Claw1.setPosition(0);
-            // Claw2.setPosition(1);
+            Claw.setPosition(0);//Releases pixel-Change # if needed
             fl.setPower(0);
             fr.setPower(0);
             bl.setPower(0);

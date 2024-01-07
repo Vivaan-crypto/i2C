@@ -15,7 +15,6 @@ public class Forward {
     private DcMotor fl;
     private DcMotor br;
     private DcMotor bl;
-    private Servo claw;
     Telemetry telemetry;
     Gamepad gamePad1;
     //Change to linear op mode and make the adjusments needed

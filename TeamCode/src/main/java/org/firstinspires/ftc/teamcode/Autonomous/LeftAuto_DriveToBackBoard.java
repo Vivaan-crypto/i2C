@@ -10,8 +10,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class LeftAuto_DriveToBackBoard extends LinearOpMode
 {
     DcMotor fr, fl, br, bl;
-    private Servo Claw1;
-    //  private Servo Claw2;
+    private Servo Claw;
     @Override
     public void runOpMode()
     {
@@ -24,10 +23,19 @@ public class LeftAuto_DriveToBackBoard extends LinearOpMode
         //motor2
         bl = hardwareMap.get(DcMotor.class, "br");
         //motor3
-        Claw1 = hardwareMap.get(Servo.class, "Claw1");
-        //Left Claw
-        //  Claw2 = hardwareMap.get(Servo.class, "Claw2");
-        // Claw2.setPosition(1);
+        Claw = hardwareMap.get(Servo.class, "Claw");
+        //Moves Forward
+        fr.setPower(-0.5);
+        fl.setPower(0.5);
+        br.setPower(0.5);
+        bl.setPower(0.5);
+        sleep(300);
+        //Robot drifts into position
+        fr.setPower(-0.5);
+        fl.setPower(0.5);
+        br.setPower(-0.5);
+        bl.setPower(0.5);
+        sleep(1800);
         fl.setPower(0);
         fr.setPower(0);
         bl.setPower(0);
