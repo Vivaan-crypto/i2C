@@ -22,10 +22,10 @@ public class SpikeTapeAutonomousRightBlue extends LinearOpMode {
         bl = hardwareMap.get(DcMotor.class, "bl");
         Claw = hardwareMap.get(Servo.class, "Claw");
         DistanceSensor = hardwareMap.get(DistanceSensor.class, "DistanceSensor");
-        fr.setDirection(DcMotorSimple.Direction.FORWARD);
-        fl.setDirection(DcMotorSimple.Direction.FORWARD);
-        br.setDirection(DcMotorSimple.Direction.FORWARD);
-        bl.setDirection(DcMotorSimple.Direction.FORWARD);
+        fr.setDirection(DcMotor.Direction.REVERSE);
+        fl.setDirection(DcMotor.Direction.FORWARD);
+        br.setDirection(DcMotor.Direction.REVERSE);
+        bl.setDirection(DcMotor.Direction.REVERSE);
         fl.setPower(0);
         bl.setPower(0);
         fr.setPower(0);

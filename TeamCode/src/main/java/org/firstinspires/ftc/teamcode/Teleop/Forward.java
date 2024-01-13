@@ -32,25 +32,25 @@ public class Forward {
         //Alternate: motor = hardwareMap/.get(DcMotor.class, deviceName "motor1"); In case number one does not work.
     }
     public void loop() {
-        if (gamePad1.left_stick_y > .3 || gamePad1.left_stick_y < -.3 ){
+        if (gamePad1.right_stick_y > .3 || gamePad1.right_stick_y < -.3 ){
             fr.setDirection(DcMotor.Direction.REVERSE);
             fl.setDirection(DcMotor.Direction.FORWARD);
             br.setDirection(DcMotor.Direction.REVERSE);
             bl.setDirection(DcMotor.Direction.REVERSE);
-            fr.setPower(gamePad1.left_stick_y);
-            fl.setPower(gamePad1.left_stick_y);
-            br.setPower(gamePad1.left_stick_y);
-            bl.setPower(gamePad1.left_stick_y);
+            fr.setPower(gamePad1.right_stick_y);
+            fl.setPower(gamePad1.right_stick_y);
+            br.setPower(gamePad1.right_stick_y);
+            bl.setPower(gamePad1.right_stick_y);
         }
-        if (gamePad1.left_stick_x > .3 || gamePad1.left_stick_x < -.3){
+        if (gamePad1.right_stick_x > .3 || gamePad1.right_stick_x< -.3){
             fr.setDirection(DcMotor.Direction.REVERSE);
             fl.setDirection(DcMotor.Direction.REVERSE);
             br.setDirection(DcMotor.Direction.REVERSE);
             bl.setDirection(DcMotor.Direction.FORWARD);
-            fr.setPower(gamePad1.left_stick_x);
-            fl.setPower(gamePad1.left_stick_x);
-            br.setPower(gamePad1.left_stick_x);
-            bl.setPower(gamePad1.left_stick_x);
+            fr.setPower(gamePad1.right_stick_x);
+            fl.setPower(gamePad1.right_stick_x);
+            br.setPower(gamePad1.right_stick_x);
+            bl.setPower(gamePad1.right_stick_x);
         }
         if (gamePad1.left_bumper){
             fr.setDirection(DcMotor.Direction.REVERSE);

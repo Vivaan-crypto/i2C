@@ -24,6 +24,10 @@ public class LeftAuto_DriveToBackBoard extends LinearOpMode
         bl = hardwareMap.get(DcMotor.class, "br");
         //motor3
         Claw = hardwareMap.get(Servo.class, "Claw");
+        fr.setDirection(DcMotor.Direction.REVERSE); //Motor with ISSUES!!! Backwards
+        fl.setDirection(DcMotor.Direction.FORWARD);
+        br.setDirection(DcMotor.Direction.REVERSE);
+        bl.setDirection(DcMotor.Direction.REVERSE);
         //Moves Forward
         fr.setPower(-0.5);
         fl.setPower(0.5);
