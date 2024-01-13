@@ -12,8 +12,7 @@ public class LeftAuto_DriveToBackBoard extends LinearOpMode
     DcMotor fr, fl, br, bl;
     private Servo Claw;
     @Override
-    public void runOpMode()
-    {
+    public void runOpMode() {
 
         fr = hardwareMap.get(DcMotor.class, "fl");
         //motor0

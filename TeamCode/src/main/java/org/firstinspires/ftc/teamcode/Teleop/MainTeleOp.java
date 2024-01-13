@@ -17,12 +17,12 @@ kit behind the elbow on the side which doesn't have the expansion hub, or if pos
 center-plate which is in front of the control hub, attach claw to viper with inside facing downward*/
 //Claw for hanging will basically a cylinder cut in half and inside hollow, and then place it latterally on viper kit
 
-  private DcMotorEx HangingMechanismMotor;
-  private Servo DroneLaunchServo;
+    private DcMotorEx HangingMechanismMotor;
+    private Servo DroneLaunchServo;
     private Servo DroneLaunchPlatformServo;
     private Servo Claw;
-  private DcMotorEx LinearClaw;
-  private Forward drive;
+    private DcMotorEx LinearClaw;
+    private Forward drive;
 
     @Override
     public void runOpMode() {
