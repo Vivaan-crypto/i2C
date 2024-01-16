@@ -38,13 +38,13 @@ public class SpikeTapeAutonomousCenterBlue extends LinearOpMode {
             telemetry.addData("Status", "Program Starting");
             telemetry.update();
             sleep(3000);
-            fr.setPower(-1);
+            fr.setPower(1);
             fl.setPower(1);
             br.setPower(1);
             bl.setPower(1);
             //Move to Spike tape zone to place pixel
             sleep(600);//Change the time as needed
-            fr.setPower(-0.5);
+            fr.setPower(0.5);
             fl.setPower(0.5);
             br.setPower(0.5);
             bl.setPower(0.5);
@@ -57,36 +57,35 @@ public class SpikeTapeAutonomousCenterBlue extends LinearOpMode {
             Claw.setPosition(1); //Change # as needed
             //Drops pixel on spike tape
             sleep(500);
-            fr.setPower(-1);
+            fr.setPower(0.5);
+            fl.setPower(0.5);
+            br.setPower(0.5);
+            bl.setPower(0.5);
+            //Moves forward a little so side of robot is aligned with truss 2
+            sleep(100);
+            fr.setPower(1);
             fl.setPower(-1);
             br.setPower(1);
             bl.setPower(-1);
             //Turns left to face truss 2
             sleep(150);
-            fr.setPower(-1);
-            fl.setPower(-1);
-            br.setPower(-1);
-            bl.setPower(1);
-            //Strafes to the left to be in line with the first truss
-            sleep(400);
             distance = DistanceSensor.getDistance(DistanceUnit.INCH);
             while (distance >= 0) {
                 distance = DistanceSensor.getDistance(DistanceUnit.INCH);
-                if (distance <= 100 && distance >= 8) {
-                    fr.setPower(-1);
-                    fl.setPower(1);
-                    br.setPower(1);
-                    bl.setPower(1);
+                if (distance <= 100 && distance >= 6) {
+                    fr.setPower(0.5);
+                    fl.setPower(0.5);
+                    br.setPower(0.5);
+                    bl.setPower(0.5);
                 }
                 distance = DistanceSensor.getDistance(DistanceUnit.INCH);
-                if (distance <= 7) {
+                if (distance <= 5) {
                     fl.setPower(0);
                     fr.setPower(0);
                     bl.setPower(0);
                     br.setPower(0);
                     telemetry.addData("Status", "Program Over, everything at 0");
                     telemetry.update();
-                    sleep(25000);
                 }
             }
         }

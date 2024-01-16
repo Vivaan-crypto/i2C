@@ -38,19 +38,19 @@ public class SpikeTapeAutonomousLeftBlue extends LinearOpMode {
             telemetry.addData("Status", "Program Starting");
             telemetry.update();
             sleep(3000);
-            fr.setPower(-1);
+            fr.setPower(1);
             fl.setPower(1);
             br.setPower(1);
             bl.setPower(1);
             //Move to Spike tape zone to place pixel
             sleep(500);
-            fr.setPower(-1);
+            fr.setPower(1);
             fl.setPower(-1);
             br.setPower(1);
             bl.setPower(-1);
             //Turns left to face left spike tape
             sleep(400);//Change the time as needed
-            fr.setPower(-0.5);
+            fr.setPower(0.5);
             fl.setPower(0.5);
             br.setPower(0.5);
             bl.setPower(0.5);
@@ -64,22 +64,22 @@ public class SpikeTapeAutonomousLeftBlue extends LinearOpMode {
             //Drops pixel on spike tape
             sleep(500);
             fr.setPower(-1);
-            fl.setPower(-1);
-            br.setPower(-1);
-            bl.setPower(1);
-            //Strafes to the left to be in line with the first truss
-            sleep(400);
+            fl.setPower(1);
+            br.setPower(1);
+            bl.setPower(-1);
+            sleep(100);
+            //Strafes to the right to be aligned with truss 2
             distance = DistanceSensor.getDistance(DistanceUnit.INCH);
             while (distance >= 0) {
                 distance = DistanceSensor.getDistance(DistanceUnit.INCH);
-                if (distance <= 100 && distance >= 8) {
-                    fr.setPower(-1);
-                    fl.setPower(1);
-                    br.setPower(1);
-                    bl.setPower(1);
+                if (distance <= 100 && distance >= 6) {
+                    fr.setPower(.5);
+                    fl.setPower(.5);
+                    br.setPower(.5);
+                    bl.setPower(.5);
                 }
                 distance = DistanceSensor.getDistance(DistanceUnit.INCH);
-                if (distance <= 7) {
+                if (distance <= 5) {
                     fl.setPower(0);
                     fr.setPower(0);
                     bl.setPower(0);

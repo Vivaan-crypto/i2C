@@ -17,7 +17,7 @@ kit behind the elbow on the side which doesn't have the expansion hub, or if pos
 center-plate which is in front of the control hub, attach claw to viper with inside facing downward*/
 //Claw for hanging will basically a cylinder cut in half and inside hollow, and then place it latterally on viper kit
 
-    private DcMotorEx HangingMechanismMotor;
+
     private Servo DroneLaunchServo;
     private Servo DroneLaunchPlatformServo;
     private Servo Claw;
@@ -27,7 +27,6 @@ center-plate which is in front of the control hub, attach claw to viper with ins
     @Override
     public void runOpMode() {
         drive = new Forward(hardwareMap, gamepad1, telemetry);
-        HangingMechanismMotor = hardwareMap.get(DcMotorEx.class, "HangingMechanismMotor");
         DroneLaunchPlatformServo = hardwareMap.get(Servo.class,"DroneLaunchPlatformServo");
         DroneLaunchServo = hardwareMap.get(Servo.class, "DroneLaunchServo");
         Claw = hardwareMap.get(Servo.class, "Claw");
@@ -41,6 +40,12 @@ center-plate which is in front of the control hub, attach claw to viper with ins
 
     }
     public void ControllLoops() {
+        //IMPORTANT NOTE:
+        /*For hanging use the viper kit, so you don't need an extra motor nor it's code.
+        * So put 2 good claws on one of the two bottom stages of the viper kit(Choose stage based upon how high viper kit can go),
+        * make sure you put the claws on the same stage!!!. For the claws just some good sturdy hooks.
+        * So attach a rod/metal beam to each hook somehow and somewhere(preferably near the bottom)
+        * and attach the other side of the rod/metal beam to the viper kit stage*/
         if (gamepad1.dpad_down) {
             DroneLaunchServo.setPosition(1); /* Set servo to 180 degrees position, which primes launcher for drone launch. Change the # as needed*/
         }
@@ -56,15 +61,9 @@ center-plate which is in front of the control hub, attach claw to viper with ins
         }
         if (gamepad1.left_stick_y > 0.4 || gamepad1.left_stick_y < -0.4) {
             //This if statement moves the linear slides for the claw
-            //Change to -gamepade..... if needed, you probably will need to do it because of how the motors will be place, MAKE SURE TO UPDATE THE -'s based on the placement of the motors.
+            //Change to -gamepad..... if needed, you probably will need to do it because of how the motors will be place, MAKE SURE TO UPDATE THE -'s based on the placement of the motors.
             LinearClaw.setPower(gamepad1.left_stick_y);
         }
-        if(gamepad1.a){
-            HangingMechanismMotor.setPower(gamepad1.left_trigger);//Shortens Viper slides crunching robot and raising robot of ground
-            //Change -left trigger... as needed based upon placement of motor
-            HangingMechanismMotor.setPower(gamepad1.right_trigger);//Extends Viper slides releasing robot and putting it back down on the ground
-            //Change to -right trigger... if needed due to motor placement
-          }
         if(gamepad1.x) {
             DroneLaunchPlatformServo.setPosition(1);
             //Sets drone launch platform to shooting position / shooting angle.
