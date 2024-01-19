@@ -19,7 +19,7 @@ public class BlueAuto extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        fr = hardwareMap.get(DcMotor.class, "fr"); //Wonky One
+        fr = hardwareMap.get(DcMotor.class, "fr"); //The wonky One
         fl = hardwareMap.get(DcMotor.class, "fl");
         br = hardwareMap.get(DcMotor.class, "br");
         bl = hardwareMap.get(DcMotor.class, "bl");
