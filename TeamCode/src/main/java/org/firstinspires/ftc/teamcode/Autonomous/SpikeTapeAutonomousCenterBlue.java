@@ -35,7 +35,7 @@ public class SpikeTapeAutonomousCenterBlue extends LinearOpMode {
         telemetry.update();
         waitForStart();
         while (opModeIsActive()) {
-            telemetry.addData("Status", "Program Starting");
+                telemetry.addData("Status", "Program Starting");
             telemetry.update();
             sleep(3000);
             fr.setPower(1);
