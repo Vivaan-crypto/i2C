@@ -67,7 +67,7 @@ public class SpikeTapeAutonomousRightBlue extends LinearOpMode {
             fl.setPower(-1);
             br.setPower(1);
             bl.setPower(-1);
-            //Turns left 180 to face truss 2
+            //Turns left 180 to face truss 1
             sleep(400);
             fr.setPower(-1);
             fl.setPower(1);
