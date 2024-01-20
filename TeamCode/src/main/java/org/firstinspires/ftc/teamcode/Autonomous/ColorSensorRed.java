@@ -15,7 +15,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 @Autonomous
 //Where in the driver program this will be found ^
-public class ColorSensorBlue extends LinearOpMode
+public class ColorSensorRed extends LinearOpMode
 {
     private DcMotor fr, fl, br, bl;
     private Servo ClawL;
@@ -64,10 +64,10 @@ public class ColorSensorBlue extends LinearOpMode
             //Change when mech team adds 425's(motors)
             //Do for blue side that if Blue is greater than red then run code and vice versa for red side
             //for example for left blue side put if(BlueL > RedL) then run the code.
-              telemetry.addData("Status", "Program Starting");
-              telemetry.update();
-              sleep(3000);
-            if(BlueL > RedL && BlueL > GreenL){
+            telemetry.addData("Status", "Program Starting");
+            telemetry.update();
+            sleep(3000);
+            if(RedL > BlueL && RedL >GreenL){
                 fr.setPower(0.5);
                 fl.setPower(0.5);
                 br.setPower(0.5);
@@ -97,11 +97,17 @@ public class ColorSensorBlue extends LinearOpMode
                 bl.setPower(-0.5);
                 //Moves backwards so robot doesn't hit pixels
                 sleep(100);
-                fr.setPower(-0.5);
-                fl.setPower(0.5);
+                fr.setPower(0.5);
+                fl.setPower(-0.5);
                 br.setPower(0.5);
                 bl.setPower(-0.5);
-                //Strafes to the right so is alligned with Robot
+                //Turns left 180 to face truss 1
+                sleep(400);
+                fr.setPower(0.5);
+                fl.setPower(-0.5);
+                br.setPower(-0.5);
+                bl.setPower(0.5);
+                //Strafes to the left so is alligned with second truss
                 sleep(500);//Change # as needed
                 DistanceSensor.getDistance(DistanceUnit.INCH);
                 while (distance <= 0){
@@ -123,7 +129,7 @@ public class ColorSensorBlue extends LinearOpMode
                     }
                 }
             }
-            if (BlueR > RedR && BlueR > GreenR) {
+            if (RedR > BlueR && RedR >GreenR) {
                 fr.setPower(0.5);
                 fl.setPower(0.5);
                 br.setPower(0.5);
@@ -159,15 +165,9 @@ public class ColorSensorBlue extends LinearOpMode
                 sleep(100);
                 fr.setPower(0.5);
                 fl.setPower(-0.5);
-                br.setPower(0.5);
+                br.setPower(-0.5);
                 bl.setPower(-0.5);
-                //Turns left 180 to face truss 1
-                sleep(400);
-                fr.setPower(-0.5);
-                fl.setPower(0.5);
-                br.setPower(0.5);
-                bl.setPower(-0.5);
-                //Strafes to the right to be in aligned with the second truss
+                //Strafes to the left to be in aligned with the second truss
                 sleep(500);
                 distance = DistanceSensor.getDistance(DistanceUnit.INCH);
                 while (distance >= 0) {
@@ -221,10 +221,10 @@ public class ColorSensorBlue extends LinearOpMode
                 bl.setPower(-0.5);
                 //Moves backwards so robot doesn't hit pixels
                 sleep(100); //Change the time as needed
-                fr.setPower(-0.5);
-                fl.setPower(0.5);
-                br.setPower(0.5);
-                bl.setPower(-0.5);
+                fr.setPower(0.5);
+                fl.setPower(-0.5);
+                br.setPower(-0.5);
+                bl.setPower(0.5);
                 //Strafes to left so it doesn't hit any pixels
                 sleep(200); //Change the time as needed
                 fr.setPower(0.5);
@@ -233,11 +233,11 @@ public class ColorSensorBlue extends LinearOpMode
                 bl.setPower(0.5);
                 //Moves forward so side of robot is in line with truss 2
                 sleep(500); //Change the time as needed
-                fr.setPower(0.5);
-                fl.setPower(-0.5);
-                br.setPower(0.5);
-                bl.setPower(-0.5);
-                //Turns left to face truss 2
+                fr.setPower(-0.5);
+                fl.setPower(0.5);
+                br.setPower(-0.5);
+                bl.setPower(0.5);
+                //Turns right to face truss 2
                 sleep(200); //Change the time as needed
                 distance = DistanceSensor.getDistance(DistanceUnit.INCH);
                 while (distance >= 0) {
