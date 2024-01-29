@@ -30,7 +30,6 @@ center-plate which is in front of the control hub, attach claw to viper with ins
 
     @Override
     public void runOpMode() {
-        DroneLaunchServo.setPosition(1);
         drive = new Forward(hardwareMap, gamepad1, telemetry);
         DroneLaunchPlatformServo = hardwareMap.get(Servo.class, "DroneLaunchPlatformServo");
         DroneLaunchServo = hardwareMap.get(Servo.class, "DroneLaunchServo");
@@ -38,7 +37,7 @@ center-plate which is in front of the control hub, attach claw to viper with ins
         ClawL = hardwareMap.get(Servo.class, "ClawL");
         ClawWrist = hardwareMap.get(Servo.class, "ClawWrist");
         LinearClaw = hardwareMap.get(DcMotorEx.class, "LinearClaw"); //Configure in Expansion Hub
-
+        DroneLaunchServo.setPosition(1);
         waitForStart();
         while (opModeIsActive()) {
             DroneLaunchServo.setPosition(1);
