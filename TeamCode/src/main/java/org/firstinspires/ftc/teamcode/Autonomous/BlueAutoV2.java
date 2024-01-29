@@ -31,8 +31,8 @@ public class BlueAutoV2 extends LinearOpMode {
         fl.setPower(0);
         bl.setPower(0);
         fr.setPower(0);
-        br.setPower(0); 
-        ClawL.setPostion(1);//Change the numbers for this and the line below but make sure claw clamps onto pixel(s).
+        br.setPower(0);
+        ClawL.setPosition(1);//Change the numbers for this and the line below but make sure claw clamps onto pixel(s).
         ClawR.setPosition(0);
         telemetry.addData("Status", "Initialized, Pixel is grabbed onto tightly & All systems are at 0");
         telemetry.update();
@@ -58,20 +58,20 @@ public class BlueAutoV2 extends LinearOpMode {
 //Robot moves to the EDGE of starting line of backstage.
                     sleep(1500);//Change time as needed
                   ClawWrist.setPosition(1); //Change #, but make sure that the claw wrist bends upwards and becomes somewhat vertical
-                     sleep(1000); 
+                     sleep(1000);
                     fr.setPower(0.5);
                     fl.setPower(-0.5);
                     br.setPower(-0.5);
-                    bl.setPower(0.5); 
+                    bl.setPower(0.5);
           //Robot strafes to the left so the claw is lined up in the middle between the center and right side of backboard.
-                    sleep(500) //Change time as needed
+                    sleep(500); //Change time as needed
                        fr.setPower(0.3);
                        fl.setPower(0.3);
                        br.setPower(0.3);
                        bl.setPower(0.3);
                        sleep(800);
                      LinearClaw.setPower(0.5);
-                     sleep(1500)  //Change time & #’s so that there is enough space for viper kit to extend
+                     sleep(1500); //Change time & #’s so that there is enough space for viper kit to extend
                        ClawL.setPosition(1);
                        ClawR.setPosition(0);
                        sleep(500);
