@@ -61,8 +61,8 @@ center-plate which is in front of the control hub, attach claw to viper with ins
             resetRuntime();
             //Figure out a way to do double click on the dpad_up to launch drone because the code below might not work!!!
             //But still test the code below before actually changing it!!!
-            if (gamepad1.dpad_up && runtime.seconds() <= 3.5)  {
-             if(gamepad1.dpad_up && runtime.seconds() <= 3.5) {
+            if (gamepad1.x && runtime.seconds() <= 3.5)  {
+             if(gamepad1.x && runtime.seconds() <= 3.5) {
                  DroneLaunchPlatformServo.setPosition(1);
                  //Sets drone launch platform to shooting position / shooting angle.
                  DroneLaunchServo.setPosition(0);
@@ -86,7 +86,7 @@ center-plate which is in front of the control hub, attach claw to viper with ins
         if (gamepad1.right_stick_y == 0) {
             LinearClaw.setPower(0.1);
         } else {
-            LinearClaw.setPower(gamepad1.right_stick_y * 0.8);
+            LinearClaw.setPower(gamepad1.right_stick_y);
         }
         if (gamepad1.x) {
             DroneLaunchPlatformServo.setPosition(1);
